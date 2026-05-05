@@ -1,0 +1,22 @@
+[package]
+name = "boppo_websocket"
+version = "0.1.0"
+edition = "2024"
+description = "WebSocket Library for the Boppo Tablet"
+homepage = "https://developer.boppo.com"
+keywords = ["boppo", "websocket", "audio", "embedded"]
+categories = ["api-bindings"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/boppofun/rust_boppo_websocket"
+
+[dependencies]
+futures-util = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.21", features = ["rustls-tls-native-roots"] }
+rustls = "0.22"
+rustls-pemfile = "2"
+boppo_core = { version = "0.2.0" }
+edge-executor = { version = "0.4.1" }
