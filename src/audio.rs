@@ -6,6 +6,9 @@ use crate::{client::SetSoundParameterRequest, globals::SENDER};
 
 /// Play a sound on the tablet.
 ///
+/// This will not return an error if the sound fails to play on the tablet but
+/// an error will be returned and printed as an error message asynchronously.
+///
 /// # Panics
 ///
 /// Panics if [`crate::setup_globals`] has not been called.

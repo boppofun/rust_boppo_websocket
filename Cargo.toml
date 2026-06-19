@@ -18,5 +18,6 @@ tokio = { version = "1", features = ["full"] }
 tokio-tungstenite = { version = "0.21", features = ["rustls-tls-native-roots"] }
 rustls = "0.22"
 rustls-pemfile = "2"
-boppo_core = { version = "0.2.0" }
+# boppo_core = { version = "0.2.0" }
+boppo_core = { git = "https://github.com/boppofun/rust_boppo_core", rev = "7f44f65a" }
 edge-executor = { version = "0.4.1" }

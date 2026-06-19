@@ -2,6 +2,7 @@ use std::sync::{Mutex, Once, OnceLock};
 
 use boppo_core::{
     Framebuffer, Lights,
+    audio::SoundBuilder,
     color::RGB,
     executor::Executor,
     internal::{AudioParameter, ButtonCounts},
@@ -68,7 +69,7 @@ pub async fn setup_globals(
             })
             .unwrap();
 
-        boppo_core::internal::init_audio(modify_controller_param);
+        boppo_core::internal::init_audio(play_sound, modify_controller_param);
     });
 
     let button_tx = BUTTON_TX.get().unwrap().clone();
@@ -111,6 +112,10 @@ fn set_lights_impl(colors: &[RGB; Lights::COUNT]) {
             sender.set_lights(Framebuffer { colors }).await.ok();
         }
     });
+}
+
+fn play_sound(sound: SoundBuilder) {
+    tokio::spawn(async move { crate::audio::play(sound).await.expect("sound should play") });
 }
 
 fn modify_controller_param(id: u64, param: boppo_core::internal::AudioParameter, value: f32) {
